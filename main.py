@@ -40,7 +40,7 @@ for x in password:
         counter = 0
         operation = input('Enter yes to perform operation: ')
         while operation == 'yes' :
-            transaction = input('Choose transaction option [deposit,withdrawal,transfer,bundles,checkbalance,logout]')
+            transaction = input('Choose transaction option [deposit,withdrawal,transfer, bundles, checkbalance,logout]')
             if transaction == 'deposit':
                 program.deposit()
             elif transaction == 'withdrawal':
