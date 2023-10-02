@@ -30,38 +30,3 @@ python bank_app.py
 4. Choose your desired transaction (deposit, withdrawal, transfer, bundles, check balance, or logout) and follow the prompts.
 
 5. Perform transactions as needed.
-
-## Example Usage
-
-```python
-# Create a bankapp object
-program = bankapp()
-
-# Enter the password to access the application
-passid = int(input('Enter your password: '))
-
-# Check if the password is valid
-for x in password:
-    if passid == x:
-        counter = 0
-        operation = input('Enter yes to perform operation: ')
-        while operation == 'yes':
-            transaction = input('Choose transaction option [deposit, withdrawal, transfer, bundles, check balance, logout]')
-            if transaction == 'deposit':
-                program.deposit()
-            elif transaction == 'withdrawal':
-                program.withdrawal()
-            elif transaction == 'transfer':
-                program.transfer()
-            elif transaction == 'bundles':
-                program.bundles()
-            elif transaction == 'check balance':
-                program.checkbalance()
-            elif transaction == 'logout':
-                print('GOOD BYE')
-                break
-            operation = input('Enter yes to perform operation')
-            counter += 1
-else:
-    print('Invalid Password')
-```
