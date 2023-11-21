@@ -1,60 +1,66 @@
-class bankapp:
+class BankApp:
     def __init__(self):
         self.balance = 0
-        
-    def deposit(self):
-        amount = float(input('Enter deposit Amount'))
-        self.balance += amount
-        print('Transaction succesful')
-        
-    def withdraw(self):
-        amount = float(input('Enter Withdrawal Amount'))
-        if amount == 0 or amount > self.balance:
-            print('Zero or insufficient funds')
-        else:
-                self.balance -= amount
-                print('Transaction succesful')
-    def transfer(self):
-        amount = input(float('Enter transfer amount: '))
-        if amount == 0 or amount > self.balace:
-            print('zero or insufficient funds')
-        else:
-                print('Transaction successful')
-    def bundles(self):
-        amount = float(input('Enter bundles amount: '))
-        if amount == 0 or amount > self.balance:
-            print('Transaction Unsuccessful')
-        else:
-            phonenumber = input('Enter destination phone number: ')
-            provider = input('Enter Network Provider: ')
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return 'Transaction successful'
+        return 'Invalid deposit amount'
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
             self.balance -= amount
-            print('Transaction Successful')
-    def checkbalance(self):
-        print(f' Your available balance is {self.balance}')
-      
-program = bankapp()
-password = [2345,4565,4543,7865]
-passid = int(input('Enter your password: '))
-for x in password:
-    if passid == x:
-        counter = 0
-        operation = input('Enter yes to perform operation: ')
-        while operation == 'yes' :
-            transaction = input('Choose transaction option [deposit,withdrawal,transfer, bundles, checkbalance,logout]')
+            return 'Transaction successful'
+        return 'Zero or insufficient funds'
+
+    def transfer(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount  # Assuming transfer to another account
+            return 'Transaction successful'
+        return 'Zero or insufficient funds'
+
+    def bundles(self, amount, phonenumber, provider):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            return 'Transaction Successful'
+        return 'Transaction Unsuccessful'
+
+    def check_balance(self):
+        return f'Your available balance is {self.balance}'
+
+# User Interface
+def main():
+    program = BankApp()
+    password = [2345, 4565, 4543, 7865]
+    passid = int(input('Enter your password: '))
+
+    if passid in password:
+        while True:
+            transaction = input('Choose transaction option [deposit, withdrawal, transfer, bundles, check balance, logout]: ').lower()
             if transaction == 'deposit':
-                program.deposit()
+                amount = float(input('Enter deposit amount: '))
+                print(program.deposit(amount))
             elif transaction == 'withdrawal':
-                program.withdrawal()
+                amount = float(input('Enter withdrawal amount: '))
+                print(program.withdraw(amount))
             elif transaction == 'transfer':
-                program.transfer()  
+                amount = float(input('Enter transfer amount: '))
+                print(program.transfer(amount))
             elif transaction == 'bundles':
-                program.bundles()
-            elif transaction == 'checkbalance':
-                program.checkbalance()
+                amount = float(input('Enter bundles amount: '))
+                phonenumber = input('Enter destination phone number: ')
+                provider = input('Enter network provider: ')
+                print(program.bundles(amount, phonenumber, provider))
+            elif transaction == 'check balance':
+                print(program.check_balance())
             elif transaction == 'logout':
-                print('GOOD BYE')
+                print('Goodbye')
                 break
-            operation = input('Enter yes to perform operation')
-            counter += 1
-else:
-    print('Invalid Password')
+            else:
+                print('Invalid transaction option')
+    else:
+        print('Invalid Password')
+
+if __name__ == "__main__":
+    main()
